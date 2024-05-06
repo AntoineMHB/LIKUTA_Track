@@ -17,3 +17,8 @@ export const fetchData = (key, dataType = 'json') => {
     }
     return null;
 }; 
+
+// delete item
+export const deleteItem = ({ key }) => {
+    return localStorage.removeItem(key)
+}

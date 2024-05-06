@@ -11,6 +11,9 @@ import Error from "./pages/Error";
 //Layouts
 import Main, { mainLoader } from "./layouts/Main";
 
+// Actions 
+import { logoutAction } from "./actions/logout";
+
 // We define the Root component
 //const Root = () => <div>Hi</div>;
 
@@ -35,14 +38,17 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [  
     {
-    index: true,
-    element:  <Dashboard />,
-    loader: dashboardLoader,
-    errorElement: <Error />
-  },
-  
+       index: true,
+       element:  <Dashboard />,
+       loader: dashboardLoader,
+       errorElement: <Error />
+    },
+    {
+        path: "logout",
+        action: logoutAction
+    }
 
-    ]
+   ]
   }, 
  
       // {
