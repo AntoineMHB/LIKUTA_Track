@@ -1,10 +1,10 @@
- import React, { useState, useRef }  from 'react';
+import React, { useState, useRef }  from 'react';
  
  // assets
 import logomark from "../assets/logomark.svg"
 
 // react router dom imports
-import { Form, NavLink } from 'react-router-dom'
+import { Form, NavLink, useNavigate } from 'react-router-dom'
 
 // library
 import { TrashIcon } from '@heroicons/react/16/solid';
@@ -25,6 +25,7 @@ const ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
                borderRadius: '5px',
                boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
                textAlign: 'center',
+               zIndex: 1000,
              }}
         >
             <p>{message}</p>
@@ -61,15 +62,16 @@ const ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
  const Nav = ({ userName }) => {
    const [showConfirmation, setShowConfirmation] = useState(false);
    const formRef = useRef(null);
+   const navigate = useNavigate();
 
    const handleLogout = (event) => {
     event.preventDefault(); //we prevent the form submission
     setShowConfirmation(true);
    };
 
-   const handleConfirm = (event) => {
+   const handleConfirm = () => {
     setShowConfirmation(false);
-    logoutAction();    
+    logoutAction(navigate);    
   };
 
    const handleCancel = () => {
